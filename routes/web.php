@@ -14,9 +14,13 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('dashboard', [FlightController::class, 'index'])
+Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
+Route::get('FlightsList', [FlightController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('flightsList');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
@@ -49,6 +53,9 @@ Route::middleware(['auth'])->group(function () {
         ->name('flights.indexWelcome');
 
     Route::resource('flights', FlightController::class);
+
+    Route::get('flightCreate', [FlightController::class, 'create'])->name('flight.create');
+    Route::post('flightStore', [FlightController::class, 'store'])->name('flight.store');
 
     // <<<<<<<<<<>>>>>>>><<<<<<<<<<>>>>>
     // Rutas de la tabla user_passengers
