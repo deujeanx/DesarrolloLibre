@@ -10,12 +10,20 @@
             <div
                 class="bg-white shadow-md rounded-xl p-6 mb-8 flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
                 <div class="flex flex-col md:flex-row gap-4 w-full">
-                    <input type="text" id="filterOrigin" placeholder="Buscar por origen..."
-                        class="w-full md:w-1/3 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
-
-                    <input type="text" id="filterDestiny" placeholder="Buscar por destino..."
-                        class="w-full md:w-1/3 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
-
+                    <select id="originFilter" class=" w-full md:w-1/3 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" id="filterOrigin">
+                        @foreach ($origenes as $origen)
+                            
+                            <option value="{{$origen->origin}}">{{$origen->origin}}</option>
+                            
+                        @endforeach
+                    </select>
+                    <select id="destinyFilter" class=" w-full md:w-1/3 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" id="filterOrigin">
+                        @foreach ($destinos as $destini)
+                            
+                            <option value="{{$destini->destinie}}">{{$destini->destinie}}</option>
+                            
+                        @endforeach
+                    </select>
                     <input type="date" id="filterDate"
                         class="w-full md:w-1/3 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
                 </div>

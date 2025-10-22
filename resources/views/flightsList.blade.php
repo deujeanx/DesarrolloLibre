@@ -30,17 +30,20 @@
                         {{-- Continyar aqui --}}
 
 
-                        <form action="{{route('change.status')}}">
-                            <div class="rounded p-2 text-white bg-blue-500">
+                        <form action="{{route('change.status')}}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <input type="text" name="vuelo" class="hidden" value="{{$flight->id}}">
+                            <button type="submit" class="rounded hover:bg-blue-950 p-2 text-white bg-blue-500">
                                 <p>
-                                    Cambiar de estado a 
+                                    Cambiar a 
                                     @if ($flight->estado == 'disponible')
                                         lleno
                                     @else
                                         disponible
                                     @endif
                                 </p>
-                            </div>
+                            </button>
                         </form>
                     </td>
                 </tr>

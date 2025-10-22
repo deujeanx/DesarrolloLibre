@@ -7,6 +7,9 @@
     <title>AirHub | @yield('title')</title>
     @vite('resources/css/app.css')
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 
 <body class="bg-gray-50 text-gray-800">
@@ -61,6 +64,7 @@
     <footer class="bg-white border-t py-6 text-center text-gray-500 text-sm">
         © {{ date('Y') }} AirHub — Tu espacio en las alturas.
     </footer>
+    <script src="{{asset('js/select.js')}}"></script>
 </body>
 
 </html>

@@ -57,6 +57,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('flightCreate', [FlightController::class, 'create'])->name('flight.create');
     Route::post('flightStore', [FlightController::class, 'store'])->name('flight.store');
 
+    Route::put('changeStatus',[FlightController::class, 'changeStatus'])->name('change.status');
+
     // <<<<<<<<<<>>>>>>>><<<<<<<<<<>>>>>
     // Rutas de la tabla user_passengers
     // <<<<<<<<<<>>>>>>>><<<<<<<<<<>>>>>

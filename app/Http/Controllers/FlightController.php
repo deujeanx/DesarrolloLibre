@@ -18,7 +18,7 @@ class FlightController extends Controller
     {
 
 
-        $flights = Flight::with(['origin', 'destinie', 'airline', 'model_plane'])->where('estado', 'disponible')->get();        
+        $flights = Flight::with(['origin', 'destinie', 'airline', 'model_plane'])->get();        
         return view('flightsList', compact('flights'));
 
     }
@@ -95,6 +95,29 @@ class FlightController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
+    // Cambia el estado de un vuelo
+
+    public function changeStatus(Request $request){
+
+        $flight = Flight::find($request->vuelo);
+
+        if($flight->estado == 'disponible'){
+
+            $flight->estado = 'lleno';
+
+        } else if ($flight->estado == 'lleno'){
+
+            $flight->estado = 'disponible';
+
+        }
+
+        $flight->save();
+
+        return redirect(route('flightsList'));
+
+    }
+    
     public function update(Request $request, Flight $flight)
     {
         $request->validate([
@@ -127,8 +150,11 @@ class FlightController extends Controller
 
     public function indexWelcome()
     {
+
+        $origenes = Origin::all();
+        $destinos = Destinie::all();
         $flights = Flight::with(['origin', 'destinie', 'airline', 'model_plane'])->where('estado', 'disponible')->get();
 
-        return view('livewire.view.client.flights.list-Flights', compact('flights'));
+        return view('livewire.view.client.flights.list-Flights', compact(['flights', 'origenes', 'destinos']));
     }
 }
