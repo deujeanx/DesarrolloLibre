@@ -12,7 +12,8 @@ class FlightController extends Controller
      */
     public function index()
     {
-        //
+        $flights = Flight::all();
+        return view('livewire.view.admin.list-Flights', compact('flights'));
     }
 
     /**

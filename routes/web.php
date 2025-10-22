@@ -61,8 +61,6 @@ Route::middleware(['auth'])->group(function () {
     // <<<<<<<<<<>>>>>>>><<<<<<<<<<>>>>>>>
     // Rutas para la asignacion de puestos
     // <<<<<<<<<<>>>>>>>><<<<<<<<<<>>>>>>>
-
-
     Route::get('/positions/select/{flight_id}', [PositionController::class, 'selectPayer'])->name('positions.selectPayer');
     Route::put('/positions/select/{flight_id}', [PositionController::class, 'storePayer'])->name('positions.storePayer');
 
