@@ -60,11 +60,11 @@ class UserPassengerController extends Controller
             }
         }
 
-        // 🔹 Registrar cada pasajero hijo
+        //  Registrar cada pasajero hijo
         foreach ($validated['passengers'] as $data) {
             UserPassenger::create([
                 'flight_id' => $validated['flight_id'],
-                'user_payer_id' => $userPayer->id, // el padre correcto
+                'user_payer_id' => $userPayer->id, 
                 'first_name' => $data['first_name'],
                 'middle_name' => $data['middle_name'] ?? null,
                 'first_surname' => $data['first_surname'],

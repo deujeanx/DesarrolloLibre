@@ -68,8 +68,14 @@ class PositionController extends Controller
         $flight = Flight::with('positions', 'origin', 'destinie', 'model_plane')->findOrFail($flight_id);
         $positions = Position::where('flight_id', $flight_id)->get();
 
+        // Cantidad de pasajeros que compró el payer
+        $passengerCount = $userPayer->flight->userPassenger ?? 0; // o la propiedad que tengas
+
+        // Tomar los últimos pasajeros creados por este payer en este vuelo
         $passengers = UserPassenger::where('user_payer_id', $userPayer->id)
             ->where('flight_id', $flight_id)
+            ->orderBy('created_at', 'desc')
+            ->take($passengerCount)
             ->get();
 
         return view('livewire.view.client.positions.selectPassengers', compact('flight', 'positions', 'userPayer', 'passengers'));
