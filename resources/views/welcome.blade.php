@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+@fluxAppearance
 </head>
 
 <body class="bg-gray-50 text-gray-800">
@@ -24,29 +25,43 @@
         <nav class="flex items-center gap-6 text-sm font-medium text-gray-700">
             <a href="{{ route('home') }}" class="hover:text-blue-600">Inicio</a>
             <a href="{{ route('flights.indexWelcome') }}" class="hover:text-blue-600">Reservar</a>
-            <a href="#" class="hover:text-blue-600">Ofertas</a>
             <a href="#" class="hover:text-blue-600">Mis reservas</a>
-            <a href="#" class="hover:text-blue-600">Ayuda</a>
 
             <div class="flex items-center gap-3">
+
                 @auth
-                    <span class="text-gray-700">{{ Auth::user()->first_name }}</span>
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button class="text-blue-600 hover:underline">Salir</button>
-                    </form>
-                @else
-                    <a href="{{ route('login') }}" class="text-blue-600 font-medium hover:underline">Iniciar sesión</a>
+                    <flux:dropdown position="bottom" align="end">
+                        {{-- Avatar y nombre --}}
+                        <flux:profile  name="{{ Auth::user()->first_name }}" />
+
+                        {{-- Menú --}}
+                        <flux:navmenu>
+
+                            @role('admin')
+                                <flux:navmenu.item href="{{ route('dashboard') }}" icon="magnifying-glass-plus">Dashboard
+                                </flux:navmenu.item>
+                            @endrole
+
+                            {{-- Logout --}}
+                            <flux:navmenu.item>
+                                <form action="{{ route('logout') }}" method="POST" class="inline">
+                                    @csrf
+                                    <flux:navmenu.item type="submit" icon="arrow-left-start-on-rectangle">
+                                        Logout
+                                    </flux:navmenu.item>
+                                </form>
+                            </flux:navmenu.item>
+                        </flux:navmenu>
+                    </flux:dropdown>
+                @endauth
+
+                @guest
+                    <a href="{{ route('login') }}" class="text-blue-600 font-medium hover:underline mr-4">Iniciar sesión</a>
                     <a href="{{ route('register') }}"
                         class="bg-blue-600 text-white px-4 py-1.5 rounded-md hover:bg-blue-700 transition">
                         Registrarse
                     </a>
-                @endauth
-                @auth
-                    @role('admin')
-                        <flux:button href="{{ route('dashboard') }}">Dashboard</flux:button>
-                    @endrole
-                @endauth
+                @endguest
             </div>
         </nav>
     </header>
@@ -78,7 +93,7 @@
     <footer class="bg-white border-t py-6 text-center text-gray-500 text-sm">
         © {{ date('Y') }} AirHub — Tu espacio en las alturas.
     </footer>
-    <script src="{{asset('js/select.js')}}"></script>
+    <script src="{{ asset('js/select.js') }}"></script>
 </body>
-
+@fluxScripts
 </html>
