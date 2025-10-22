@@ -44,12 +44,14 @@
 
                     <div>
                         <label class="text-sm text-gray-500">Ida</label>
-                        <input type="date" class="w-full border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        <input type="date"
+                            class="w-full border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
                     </div>
 
                     <div>
                         <label class="text-sm text-gray-500">Vuelta</label>
-                        <input type="date" class="w-full border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        <input type="date"
+                            class="w-full border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
                     </div>
 
                     <div>
@@ -61,7 +63,8 @@
                         </select>
                     </div>
 
-                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2.5 rounded-lg transition self-end">
+                    <button
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2.5 rounded-lg transition self-end">
                         Buscar
                     </button>
                 </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\PayController;
 use App\Http\Controllers\UserPassengerController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
@@ -76,7 +77,7 @@ Route::middleware(['auth'])->group(function () {
     // <<<<<<<<<<>>>>>>>><<<<<<<<<<>>>>>>>
     // Rutas para validar metodo de pago
     // <<<<<<<<<<>>>>>>>><<<<<<<<<<>>>>>>>
-
+    Route::get('/pays/create/{flight_id}', [PayController::class, 'create'])->name('pays.create.id');
     Route::resource('pays', PayController::class);
 
 });

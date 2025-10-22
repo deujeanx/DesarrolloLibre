@@ -7,6 +7,7 @@
     <title>AirHub | @yield('title')</title>
     @vite('resources/css/app.css')
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="bg-gray-50 text-gray-800">
@@ -47,6 +48,20 @@
             </div>
         </nav>
     </header>
+
+    @if (Session::has('alert'))
+        <script>
+            // Convierte el array de PHP a un objeto JSON
+            const alertData = @json(session('alert'));
+
+            // Llama a SweetAlert2 con los datos recibidos
+            Swal.fire({
+                icon: alertData.icon,
+                title: alertData.title,
+                text: alertData.text,
+            });
+        </script>
+    @endif
 
     @section('content')
         @include('home')

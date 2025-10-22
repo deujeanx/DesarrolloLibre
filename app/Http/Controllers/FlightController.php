@@ -17,14 +17,8 @@ class FlightController extends Controller
     public function index()
     {
 
-
-        $flights = Flight::with(['origin', 'destinie', 'airline', 'model_plane'])->where('estado', 'disponible')->get();        
-        return view('flightsList', compact('flights'));
-
-
         $flights = Flight::with(['origin', 'destinie', 'airline', 'model_plane'])->where('estado', 'disponible')->get();
         return view('livewire.view.admin.list-Flights', compact('flights'));
-
     }
 
     /**
@@ -32,7 +26,7 @@ class FlightController extends Controller
      */
     public function create()
     {
-        
+
         $modelos = ModelPlane::all();
         $aerolineas = Airline::all();
         $origenes = Origin::all();
@@ -48,7 +42,7 @@ class FlightController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $validated = $request->validate([
             'origen' => 'required|exists:origins,id',
             'destino' => 'required|exists:destinies,id',
@@ -77,7 +71,7 @@ class FlightController extends Controller
         $vuelo->save();
 
         return redirect(route('flightsList'));
-        
+
     }
 
     /**
