@@ -65,9 +65,12 @@ class PositionController extends Controller
             ->where('flight_id', $flight_id)
             ->firstOrFail();
 
-        $flight = Flight::with('positions')->findOrFail($flight_id);
+        $flight = Flight::with('positions', 'origin', 'destinie', 'model_plane')->findOrFail($flight_id);
         $positions = Position::where('flight_id', $flight_id)->get();
-        $passengers = UserPassenger::where('user_payer_id', $userPayer->id)->get();
+
+        $passengers = UserPassenger::where('user_payer_id', $userPayer->id)
+            ->where('flight_id', $flight_id)
+            ->get();
 
         return view('livewire.view.client.positions.selectPassengers', compact('flight', 'positions', 'userPayer', 'passengers'));
     }
