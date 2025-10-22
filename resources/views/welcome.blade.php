@@ -39,6 +39,11 @@
                         Registrarse
                     </a>
                 @endauth
+                @auth
+                    @role('admin')
+                        <flux:button href="{{ route('dashboard') }}">Dashboard</flux:button>
+                    @endrole
+                @endauth
             </div>
         </nav>
     </header>
