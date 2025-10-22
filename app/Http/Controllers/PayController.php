@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Flight;
 use App\Models\Pay;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PayController extends Controller
 {
@@ -45,7 +47,7 @@ class PayController extends Controller
         $total = $cantidadPeople * $valorXpuesto;
 
         $validated['flight_id'] = $flight->id;
-        $validated['user_payer_id'] = auth()->user()->id;
+        $validated['user_payer_id'] = Auth::user()->user_payers->first()->id;
         $validated['total'] = $total;
 
         Pay::create($validated);
@@ -54,6 +56,12 @@ class PayController extends Controller
         'icon' => 'success',
         'title' => '¡Éxito!',
         'text' => 'Compra Exitosa!!.',
+        ]);
+
+        Ticket::create([
+            'flight_id' => $flight->id,
+            'user_payer_id' => Auth::user()->user_payers->first()->id,
+            'token' => Str::random(10),
         ]);
 
         return view('welcome')

@@ -12,7 +12,9 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        $id = auth()->user()->id;
+        $tickets = Ticket::find($id);
+         return view('livewire.view.client.report.tikect', compact('tickets'));
     }
 
     /**
@@ -55,7 +57,7 @@ class TicketController extends Controller
         //
     }
 
-    /**
+    /*
      * Remove the specified resource from storage.
      */
     public function destroy(Ticket $ticket)

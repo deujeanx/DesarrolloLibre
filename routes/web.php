@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\PayController;
 use App\Http\Controllers\UserPassengerController;
 use App\Livewire\Settings\Appearance;
@@ -69,6 +70,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('user_passengers', UserPassengerController::class);
 
 
+    // <<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
+    // Rutas de la tabla de seleccion de puesto
+    // <<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
+
     Route::get('/positions/select/{flight_id}', [PositionController::class, 'selectPayer'])->name('positions.selectPayer');
     Route::put('/positions/select/{flight_id}', [PositionController::class, 'storePayer'])->name('positions.storePayer');
 
@@ -81,5 +86,11 @@ Route::middleware(['auth'])->group(function () {
     // <<<<<<<<<<>>>>>>>><<<<<<<<<<>>>>>>>
     Route::get('/pays/create/{flight_id}', [PayController::class, 'create'])->name('pays.create.id');
     Route::resource('pays', PayController::class);
+
+
+    //<<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
+    //Ruta para la generacion de tickets<<<>>>
+    //<<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
+    Route::resource('tickets', TicketController::class);
 
 });

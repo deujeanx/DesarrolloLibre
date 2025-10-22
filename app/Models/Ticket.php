@@ -13,7 +13,6 @@ class Ticket extends Model
     protected $fillable =
     [
         'flight_id',
-        'user_passenger_id',
         'user_payer_id',
         'token',
     ];
@@ -22,12 +21,6 @@ class Ticket extends Model
     public function flight():BelongsTo
     {
         return $this->belongsTo(Flight::class);
-    }
-
-    //Relacion para la tabla user_passenger
-    public function user_passenger():BelongsTo
-    {
-        return $this->belongsTo(UserPassenger::class);
     }
 
     //Relacion para la tabla user_payer

@@ -47,4 +47,10 @@ class UserPayer extends Model
     {
         return $this->hasMany(Pay::class);
     }
+
+    //Relacion ticket
+    public function tickets():HasMany
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }
