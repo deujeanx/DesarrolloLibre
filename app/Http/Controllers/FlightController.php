@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Flight;
+use App\Models\ModelPlane;
+use App\Models\Airline;
+use App\Models\Origin;
+use App\Models\Destinie;
 use Illuminate\Http\Request;
 
 class FlightController extends Controller
@@ -14,12 +18,8 @@ class FlightController extends Controller
     {
 
         $flights = Flight::with(['origin', 'destinie', 'airline', 'model_plane'])->where('estado', 'disponible')->get();        
-        return view('dashboard', compact('flights'));
+        return view('flightsList', compact('flights'));
 
-
-        $vuelos = Flight::with(['origin', 'destinie', 'airline', 'model_plane'])->where('estado', 'disponible')->get();
-
-        return view('livewire.view.admin.list-Flights', compact('vuelos'));
 
     }
 
@@ -28,7 +28,15 @@ class FlightController extends Controller
      */
     public function create()
     {
-        //
+        
+        $modelos = ModelPlane::all();
+        $aerolineas = Airline::all();
+        $origenes = Origin::all();
+        $destinos = Destinie::all();
+
+
+        return view('flightsCreate', compact(['modelos', 'aerolineas', 'origenes', 'destinos']));
+
     }
 
     /**
@@ -36,7 +44,36 @@ class FlightController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $validated = $request->validate([
+            'origen' => 'required|exists:origins,id',
+            'destino' => 'required|exists:destinies,id',
+            'aerolinea' => 'required|exists:airlines,id',
+            'aerolinea' => 'required|exists:model_planes,id',
+            'precio' => 'required|numeric|min:0',
+            'fecha' => 'required',
+        ]);
+
+        $vuelo = new Flight;
+
+        $vuelo->origin_id = $request->origen;
+        $vuelo->destinie_id = $request->destino;
+        $vuelo->model_plane_id = $request->modelo;
+        $vuelo->airline_id = $request->aerolinea;
+        $vuelo->positionValue = $request->precio;
+        $vuelo->dateHour = $request->fecha;
+
+        $id_modelo = $request->modelo;
+
+        $modelo = ModelPlane::find($id_modelo);
+        $cupos = $modelo->capacidad;
+
+        $vuelo->cantCupos = $cupos;
+
+        $vuelo->save();
+
+        return redirect(route('flightsList'));
+        
     }
 
     /**
