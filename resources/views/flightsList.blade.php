@@ -24,6 +24,25 @@
                     <td class="p-4 text-sm text-gray-700">{{ $flight->model_plane->marca }}</td>
                     <td class="p-4 text-sm text-gray-700">{{ $flight->airline->airline }}</td>
                     <td class="p-4 text-sm text-gray-700">{{ $flight->dateHour }}</td>
+                    <td class="p-4 text-sm text-gray-700">
+
+
+                        {{-- Continyar aqui --}}
+
+
+                        <form action="{{route('change.status')}}">
+                            <div class="rounded p-2 text-white bg-blue-500">
+                                <p>
+                                    Cambiar de estado a 
+                                    @if ($flight->estado == 'disponible')
+                                        lleno
+                                    @else
+                                        disponible
+                                    @endif
+                                </p>
+                            </div>
+                        </form>
+                    </td>
                 </tr>
             @empty
                 <tr>
