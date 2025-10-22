@@ -58,15 +58,18 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('user_passengers', UserPassengerController::class);
 
-    // <<<<<<<<<<>>>>>>>><<<<<<<<<<>>>>>>>
-    // Rutas para la asignacion de puestos
-    // <<<<<<<<<<>>>>>>>><<<<<<<<<<>>>>>>>
-
 
     Route::get('/positions/select/{flight_id}', [PositionController::class, 'selectPayer'])->name('positions.selectPayer');
     Route::put('/positions/select/{flight_id}', [PositionController::class, 'storePayer'])->name('positions.storePayer');
 
     Route::get('/positions/select-passengers/{flight_id}', [PositionController::class, 'selectPassengers'])->name('positions.selectPassengers');
     Route::put('/positions/store-passengers/{flight_id}', [PositionController::class, 'storePassengers'])->name('positions.storePassengers');
+
+
+    // <<<<<<<<<<>>>>>>>><<<<<<<<<<>>>>>>>
+    // Rutas para validar metodo de pago
+    // <<<<<<<<<<>>>>>>>><<<<<<<<<<>>>>>>>
+
+    Route::resource('pays', PayController::class);
 
 });
