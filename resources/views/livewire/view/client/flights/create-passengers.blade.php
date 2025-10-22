@@ -39,88 +39,89 @@
 
             <div id="form-container"></div>
 
-            <button type="submit" 
+            <button type="submit"
                 class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-lg transition">
                 Registrar Pasajeros
             </button>
         </form>
     </div>
 
-    <script>
-        const cantidadPasajeros = {{ $cantidad }};
-        const contenedor = document.getElementById('form-container');
+   <script>
+    const cantidadPasajeros = {{ $cantidad }};
+    const contenedor = document.getElementById('form-container');
 
-        for (let i = 1; i <= cantidadPasajeros; i++) {
-            const div = document.createElement('div');
-            div.classList.add('p-4', 'border', 'border-gray-200', 'rounded-lg', 'mb-4');
+    for (let i = 1; i <= cantidadPasajeros; i++) {
+        const div = document.createElement('div');
+        div.classList.add('p-4', 'border', 'border-gray-200', 'rounded-lg', 'mb-4');
 
-            div.innerHTML = `
-                <h2 class="font-semibold text-blue-600 mb-3">Pasajero ${i}</h2>
+        div.innerHTML = `
+            <h2 class="font-semibold text-blue-600 mb-3">Pasajero ${i}</h2>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                        <label class="text-sm text-gray-600">Primer nombre</label>
-                        <input type="text" name="passengers[${i}][first_name]" class="w-full border-gray-300 rounded-md" required>
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-gray-600">Segundo nombre</label>
-                        <input type="text" name="passengers[${i}][middle_name]" class="w-full border-gray-300 rounded-md">
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-gray-600">Primer apellido</label>
-                        <input type="text" name="passengers[${i}][first_surname]" class="w-full border-gray-300 rounded-md" required>
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-gray-600">Segundo apellido</label>
-                        <input type="text" name="passengers[${i}][middle_surname]" class="w-full border-gray-300 rounded-md" required>
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-gray-600">Fecha de nacimiento</label>
-                        <input type="date" name="passengers[${i}][fecha_nacimiento]" class="w-full border-gray-300 rounded-md" required>
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-gray-600">Género</label>
-                        <select name="passengers[${i}][genero]" class="w-full border-gray-300 rounded-md" required>
-                            <option value="Masculino">Masculino</option>
-                            <option value="Femenino">Femenino</option>
-                            <option value="Otro">Otro</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-gray-600">Tipo documento</label>
-                        <select name="passengers[${i}][type_document]" class="w-full border-gray-300 rounded-md" required>
-                            <option value="Cédula de Ciudadanía">Cédula de Ciudadanía</option>
-                            <option value="Cédula de Extranjería">Cédula de Extranjería</option>
-                            <option value="Pasaporte">Pasaporte</option>
-                            <option value="Registro Civil">Registro Civil</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-gray-600">Número documento</label>
-                        <input type="text" name="passengers[${i}][number_document]" class="w-full border-gray-300 rounded-md" required>
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-gray-600">Teléfono</label>
-                        <input type="text" name="passengers[${i}][number_phone]" class="w-full border-gray-300 rounded-md" required>
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-gray-600">Email</label>
-                        <input type="email" name="passengers[${i}][email]" class="w-full border-gray-300 rounded-md">
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <label class="text-sm text-gray-600">Primer nombre</label>
+                    <flux:input type="text" name="passengers[${i}][first_name]" class="w-full border-gray-300 rounded-md" required/>
                 </div>
-            `;
 
-            contenedor.appendChild(div);
-        }
-    </script>
+                <div>
+                    <label class="text-sm text-gray-600">Segundo nombre</label>
+                    <flux:input type="text" name="passengers[${i}][middle_name]" class="w-full border-gray-300 rounded-md"/>
+                </div>
+
+                <div>
+                    <label class="text-sm text-gray-600">Primer apellido</label>
+                    <flux:input type="text" name="passengers[${i}][first_surname]" class="w-full border-gray-300 rounded-md" required/>
+                </div>
+
+                <div>
+                    <label class="text-sm text-gray-600">Segundo apellido</label>
+                    <flux:input type="text" name="passengers[${i}][middle_surname]" class="w-full border-gray-300 rounded-md" required/>
+                </div>
+
+                <div>
+                    <label class="text-sm text-gray-600">Fecha de nacimiento</label>
+                    <flux:input type="date" name="passengers[${i}][fecha_nacimiento]" class="w-full border-gray-300 rounded-md" required/>
+                </div>
+
+                <div>
+                    <label class="text-sm text-gray-600">Género</label>
+                    <flux:select name="passengers[${i}][genero]" class="w-full border-gray-300 rounded-md" required>
+                        <flux:select.option value="Masculino">Masculino</flux:select.option>
+                        <flux:select.option value="Femenino">Femenino</flux:select.option>
+                        <flux:select.option value="Otro">Otro</flux:select.option>
+                    </flux:select>
+                </div>
+
+                <div>
+                    <label class="text-sm text-gray-600">Tipo documento</label>
+                    <flux:select name="passengers[${i}][type_document]" class="w-full border-gray-300 rounded-md" required>
+                        <flux:select.option value="Cédula de Ciudadanía">Cédula de Ciudadanía</flux:select.option>
+                        <flux:select.option value="Cédula de Extranjería">Cédula de Extranjería</flux:select.option>
+                        <flux:select.option value="Pasaporte">Pasaporte</flux:select.option>
+                        <flux:select.option value="Registro Civil">Registro Civil</flux:select.option>
+                    </flux:select>
+                </div>
+
+                <div>
+                    <label class="text-sm text-gray-600">Número documento</label>
+                    <flux:input type="number" name="passengers[${i}][number_document]" class="w-full border-gray-300 rounded-md" required/>
+                </div>
+
+                <div>
+                    <label class="text-sm text-gray-600">Teléfono</label>
+                    <flux:input type="number" name="passengers[${i}][number_phone]" class="w-full border-gray-300 rounded-md" required/>
+                </div>
+
+                <div>
+                    <label class="text-sm text-gray-600">Email</label>
+                    <flux:input type="email" name="passengers[${i}][email]" class="w-full border-gray-300 rounded-md"/>
+                </div>
+            </div>
+        `;
+
+        contenedor.appendChild(div);
+    }
+</script>
+
 </body>
 </html>
