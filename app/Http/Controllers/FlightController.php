@@ -12,10 +12,10 @@ class FlightController extends Controller
      */
     public function index()
     {
-        
+
         $vuelos = Flight::with(['origin', 'destinie', 'airline', 'model_plane'])->where('estado', 'disponible')->get();
-        
-        return view('dashboard', compact('vuelos'));
+
+        return view('livewire.view.admin.list-Flights', compact('vuelos'));
 
     }
 
