@@ -4,7 +4,6 @@
     <div class="min-h-screen bg-gray-100 py-10 px-6 flex justify-center">
         <div class="max-w-7xl w-full bg-white rounded-2xl shadow-lg p-6 flex gap-6">
 
-            {{-- 🔹 Izquierda: Información y pasajeros --}}
             <div class="w-1/3 border-r border-gray-200 pr-6">
                 <h2 class="text-xl font-bold text-gray-800 mb-4">Vuelo</h2>
                 <p class="text-gray-700 mb-6">
