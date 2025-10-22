@@ -20,7 +20,6 @@
                 </ul>
             </div>
 
-            {{-- 🔹 Derecha: Mapa de asientos --}}
             <div class="w-2/3">
                 <h2 class="text-xl font-bold text-gray-800 mb-4 text-center">Selecciona los asientos</h2>
 
