@@ -14,7 +14,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::view('dashboard', 'dashboard')
+Route::get('dashboard', [FlightController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
