@@ -6,7 +6,7 @@
         <div class="max-w-6xl mx-auto px-6">
             <h1 class="text-3xl font-bold text-center text-blue-700 mb-8">Catálogo de Vuelos</h1>
 
-            {{-- 🔹 Filtros --}}
+            {{-- Filtros --}}
             <div
                 class="bg-white shadow-md rounded-xl p-6 mb-8 flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
                 <div class="flex flex-col md:flex-row gap-4 w-full">
@@ -34,7 +34,7 @@
                 </button>
             </div>
 
-            {{-- 🔹 Catálogo --}}
+            {{-- Catálogo --}}
             <div id="flightsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($flights as $flight)
                     @php

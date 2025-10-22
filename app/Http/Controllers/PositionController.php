@@ -122,7 +122,7 @@ class PositionController extends Controller
             $position->save();
         }
 
-        return redirect()->route('flights.indexWelcome')
+        return redirect()->route('pays.create.id', $flight_id)
             ->with('success', 'Asientos de pasajeros asignados correctamente.');
     }
 }

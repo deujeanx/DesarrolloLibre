@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Flight;
 use App\Models\Pay;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 
 class PayController extends Controller
 {
@@ -18,9 +21,11 @@ class PayController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($flight_id)
     {
-        //
+        $flight = Flight::findOrFail($flight_id);
+
+        return view('livewire.view.pay.metodoPay', compact('flight'));
     }
 
     /**
@@ -28,7 +33,31 @@ class PayController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'metodoPago' => 'required|string|max:255',
+            'flight_id' => 'required|integer|exists:flights,id',
+        ]);
+
+        $flight = Flight::findOrFail($validated['flight_id']);
+
+        $cantidadPeople = $flight->userPassenger;
+        $valorXpuesto = $flight->positionValue;
+        $total = $cantidadPeople * $valorXpuesto;
+
+        $validated['flight_id'] = $flight->id;
+        $validated['user_payer_id'] = auth()->user()->id;
+        $validated['total'] = $total;
+
+        Pay::create($validated);
+
+        Session::flash('alert', [
+        'icon' => 'success',
+        'title' => '¡Éxito!',
+        'text' => 'Compra Exitosa!!.',
+        ]);
+
+        return view('welcome')
+            ->with('success', 'Pago registrado correctamente');
     }
 
     /**

@@ -51,6 +51,20 @@
         </nav>
     </header>
 
+    @if (Session::has('alert'))
+        <script>
+            // Convierte el array de PHP a un objeto JSON
+            const alertData = @json(session('alert'));
+
+            // Llama a SweetAlert2 con los datos recibidos
+            Swal.fire({
+                icon: alertData.icon,
+                title: alertData.title,
+                text: alertData.text,
+            });
+        </script>
+    @endif
+
     @section('content')
         @include('home')
     @endsection
