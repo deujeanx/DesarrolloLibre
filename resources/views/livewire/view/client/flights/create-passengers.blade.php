@@ -79,7 +79,7 @@
                 </div>
 
                 <div>
-                    <label class="text-sm text-gray-600">Fecha de nacimiento</label>
+                    <label class="birthday text-sm text-gray-600">Fecha de nacimiento</label>
                     <flux:input type="date" name="passengers[${i}][fecha_nacimiento]" class="w-full border-gray-300 rounded-md" required/>
                 </div>
 
@@ -122,6 +122,6 @@
         contenedor.appendChild(div);
     }
 </script>
-
+<script src="{{asset('js/createPassenger.js')}}"></script>
 </body>
 </html>

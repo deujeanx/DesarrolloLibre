@@ -36,9 +36,9 @@ $(destinoFiltro).on('select2:select', ()=> {
 
 });
 
-  
+
 function Filtrar() {
-    
+
     let origenVal = $(origenFiltro).val(); // Obtiene el valor seleccionado
     let destinyVal = $(destinoFiltro).val();
     let dateVal = dateInput.value;
@@ -47,16 +47,16 @@ function Filtrar() {
 
     flightCards.forEach(card => {
 
-        var cardOrigin = origenVal;
-        var cardDestiny = destinyVal;
-        var cardDate = dateVal;
+        let cardOrigin = origenVal;
+        let cardDestiny = destinyVal;
+        let cardDate = dateVal;
 
         if (destinyVal){
 
             cardDestiny = (card.dataset.destiny).toLowerCase();
             destinyVal = (destinyVal).toLowerCase();
 
-        }  
+        }
 
         if (origenVal){
 
@@ -78,7 +78,7 @@ function Filtrar() {
             card.style.display = "none";
         }
     });
-    
+
 }
 
 clearButton.addEventListener("click", () => {
