@@ -87,10 +87,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pays/create/{flight_id}', [PayController::class, 'create'])->name('pays.create.id');
     Route::resource('pays', PayController::class);
 
-    // <<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
-    // Ruta para la generacion de tickets<<<>>>
-    // <<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
+
+    //<<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
+    //Ruta para la generacion de tickets<<<>>>
+    //<<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
+
     Route::resource('tickets', TicketController::class);
+    Route::get('reservas', [TicketController::class, 'reservas'])->name('reservas.index');
+    Route::get('reserva/{id}', [TicketController::class, 'reserva'])->name('reserva.show');
 
     // <<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
     // <<<<<<<Ruta para exportar en pdf<<<<<<<<

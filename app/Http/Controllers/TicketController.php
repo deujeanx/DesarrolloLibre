@@ -18,13 +18,29 @@ class TicketController extends Controller
         $userId = Auth::user()->user_payers->first()->id;
         $tickets = Ticket::where('user_payer_id', $userId)->get();
         return view('livewire.view.client.report.tikect', compact('tickets'));
+
     }
 
     // visualiza las reservas que hizo el usuario
     public function reservas()
     {
 
-        
+
+        $user_id = Auth::user()->id;
+        $reservas = Ticket::with('flight')->where('user_payer_id', $user_id)->get();
+
+        return view('livewire.view.client.flights.reservas', compact('reservas'));
+
+    }
+
+
+    public function reserva($id)
+    {
+
+        $reserva = Ticket::find($id);
+
+        return view('livewire.view.client.flights.reserva', compact('reserva'));
+
     }
 
     /**
@@ -32,8 +48,8 @@ class TicketController extends Controller
      */
     public function create()
     {
-        
-        
+
+
 
     }
 
