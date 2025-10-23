@@ -25,7 +25,7 @@
         <nav class="flex items-center gap-6 text-sm font-medium text-gray-700">
             <a href="{{ route('home') }}" class="hover:text-blue-600">Inicio</a>
             <a href="{{ route('flights.indexWelcome') }}" class="hover:text-blue-600">Reservar</a>
-            <a href="#" class="hover:text-blue-600">Mis reservas</a>
+            <a href="{{ route('reservas.index')}}" class="hover:text-blue-600">Mis reservas</a>
 
             <div class="flex items-center gap-3">
 

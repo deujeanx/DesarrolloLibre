@@ -17,12 +17,21 @@ class TicketController extends Controller
          return view('livewire.view.client.report.tikect', compact('tickets'));
     }
 
+    // visualiza las reservas que hizo el usuario
+    public function reservas()
+    {
+
+        
+    }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        
+        
+
     }
 
     /**
