@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\ChatIAController;
 use App\Http\Controllers\FlightController;
+use App\Http\Controllers\PayController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\TicketController;
-use App\Http\Controllers\PayController;
 use App\Http\Controllers\UserPassengerController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
@@ -59,7 +61,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('flightCreate', [FlightController::class, 'create'])->name('flight.create');
     Route::post('flightStore', [FlightController::class, 'store'])->name('flight.store');
 
-    Route::put('changeStatus',[FlightController::class, 'changeStatus'])->name('change.status');
+    Route::put('changeStatus', [FlightController::class, 'changeStatus'])->name('change.status');
 
     // <<<<<<<<<<>>>>>>>><<<<<<<<<<>>>>>
     // Rutas de la tabla user_passengers
@@ -68,7 +70,6 @@ Route::middleware(['auth'])->group(function () {
         ->name('user_passengers.create.withFlight');
 
     Route::resource('user_passengers', UserPassengerController::class);
-
 
     // <<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
     // Rutas de la tabla de seleccion de puesto
@@ -80,18 +81,30 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/positions/select-passengers/{flight_id}', [PositionController::class, 'selectPassengers'])->name('positions.selectPassengers');
     Route::put('/positions/store-passengers/{flight_id}', [PositionController::class, 'storePassengers'])->name('positions.storePassengers');
 
-
     // <<<<<<<<<<>>>>>>>><<<<<<<<<<>>>>>>>
     // Rutas para validar metodo de pago
     // <<<<<<<<<<>>>>>>>><<<<<<<<<<>>>>>>>
     Route::get('/pays/create/{flight_id}', [PayController::class, 'create'])->name('pays.create.id');
     Route::resource('pays', PayController::class);
 
-
-    //<<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
-    //Ruta para la generacion de tickets<<<>>>
-    //<<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
+    // <<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
+    // Ruta para la generacion de tickets<<<>>>
+    // <<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
     Route::resource('tickets', TicketController::class);
-    Route::get('reservas', [TicketController::class, 'reservas'])->name('reservas.index');
 
+    // <<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
+    // <<<<<<<Ruta para exportar en pdf<<<<<<<<
+    // <<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
+    Route::get('pdf/generar', [PdfController::class, 'pdfExportTickets'])
+        ->name('pdf.generar');
+
+
+    // <<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
+    // <<<<<<<Ruta para la api de ia<<<<<<<<<<<
+    // <<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
+    Route::get('/chat-ia', function () {
+        return view('chat.ia'); // Vista del chat (resources/views/chat/ia.blade.php)
+    })->name('chat.ia');
+
+    Route::post('/api/chat-ia', [ChatIAController::class, 'chat'])->name('chat.ia.api');
 });

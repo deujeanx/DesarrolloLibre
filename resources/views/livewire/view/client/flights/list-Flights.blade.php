@@ -1,81 +1,28 @@
-@extends('welcome')
+@extends('app')
 
-@section('title', 'Inicio')
+@section('title', 'Inicio - AirHub')
 
 @section('content')
-    {{-- HERO DE BÚSQUEDA --}}
-    <section class="relative bg-gradient-to-b from-blue-100 via-blue-50 to-white py-16">
-        <div class="max-w-6xl mx-auto px-6">
-            <h1 class="text-4xl font-bold text-blue-700 text-center mb-10">
-                Encuentra tu próximo destino con AirHub
-            </h1>
-
-            {{-- Caja de búsqueda --}}
-            <div class="bg-white shadow-xl rounded-2xl p-6 flex flex-col md:flex-row md:items-end gap-6">
-                <div class="flex items-center gap-3">
-                    <label class="flex items-center gap-2 text-sm font-medium text-gray-600">
-                        <input type="radio" name="tipo_vuelo" checked class="text-blue-600 focus:ring-blue-500">
-                        Ida y vuelta
-                    </label>
-                    <label class="flex items-center gap-2 text-sm font-medium text-gray-600">
-                        <input type="radio" name="tipo_vuelo" class="text-blue-600 focus:ring-blue-500">
-                        Solo ida
-                    </label>
+    {{-- SECCIÓN DE CATÁLOGO DE VUELOS --}}
+    <section class="py-12 sm:py-16 bg-slate-50">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Vuelos disponibles</h2>
+                    <p class="text-slate-600">Encuentra las mejores ofertas para tu próximo viaje</p>
                 </div>
-
-                <div class="flex flex-col md:flex-row w-full gap-4">
-                    <div class="flex-1">
-                        <label class="text-sm text-gray-500">Origen</label>
-                        <select class="w-full border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
-                            <option>Bogotá (BOG)</option>
-                            <option>Medellín (MDE)</option>
-                            <option>Pereira (PEI)</option>
-                        </select>
-                    </div>
-
-                    <div class="flex-1">
-                        <label class="text-sm text-gray-500">Destino</label>
-                        <select class="w-full border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
-                            <option>Cartagena (CTG)</option>
-                            <option>Barranquilla (BAQ)</option>
-                            <option>Cali (CLO)</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-gray-500">Ida</label>
-                        <input type="date"
-                            class="w-full border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-gray-500">Vuelta</label>
-                        <input type="date"
-                            class="w-full border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
-                    </div>
-
-                    <div>
-                        <label class="text-sm text-gray-500">Pasajeros</label>
-                        <select class="w-full border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
-                    </div>
-
-                    <button
-                        class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2.5 rounded-lg transition self-end">
-                        Buscar
-                    </button>
-                </div>
+                <a href="{{ route('flights.indexWelcome') }}" class="hidden sm:inline-flex items-center gap-2 text-sky-600 font-medium hover:text-sky-700 transition-colors duration-200">
+                    Ver todos los vuelos
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </a>
             </div>
+
+            {{-- Incluir el catálogo --}}
+            @include('livewire.view.client.flights.catalog')
         </div>
     </section>
-
-    {{-- SECCIÓN DE CATÁLOGO DE VUELOS --}}
-    <section class="max-w-6xl mx-auto mt-16 px-6">
-        <h2 class="text-2xl font-bold text-gray-700 mb-6">Vuelos disponibles</h2>
-
-        @include('livewire.view.client.flights.catalog') {{-- Aquí insertas el catálogo bonito --}}
-    </section>
 @endsection
+
+
