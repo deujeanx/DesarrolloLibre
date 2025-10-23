@@ -14,14 +14,23 @@ class PositionController extends Controller
     public function selectPayer($flight_id)
     {
         $user = Auth::user();
-        $userPayer = UserPayer::where('user_id', $user->id)
-            ->where('flight_id', $flight_id)
-            ->firstOrFail();
 
-        $flight = Flight::with('positions')->findOrFail($flight_id);
+        // Crea o trae el payer del usuario logueado para este vuelo
+        $userPayer = UserPayer::firstOrCreate(
+            [
+                'user_id'   => $user->id,
+                'flight_id' => $flight_id,
+            ],
+            [
+                'rol'       => 'user_payer', // o 'comprador' si prefieres
+            ]
+        );
+
+        $flight    = Flight::with('positions')->findOrFail($flight_id);
         $positions = Position::where('flight_id', $flight_id)->get();
 
-        return view('livewire.view.client.positions.selectPayer', compact('flight', 'positions', 'userPayer'));
+        return view('livewire.view.client.positions.selectPayer',
+            compact('flight', 'positions', 'userPayer'));
     }
 
     public function storePayer(Request $request, $flight_id)
@@ -55,8 +64,14 @@ class PositionController extends Controller
         $position->estado = 'ocupado';
         $position->save();
 
-        return redirect()->route('positions.selectPassengers', $flight_id)
-            ->with('success', 'Asiento seleccionado correctamente.');
+        if ($request->userPassenger == 0) {
+            return redirect()->route('pays.create.id', $flight_id)
+            ->with('success', 'Asientos de pasajeros asignados correctamente.');
+        }else
+        {
+            return redirect()->route('positions.selectPassengers', $flight_id)
+                ->with('success', 'Asiento seleccionado correctamente.');
+        }
     }
 
     public function selectPassengers($flight_id)

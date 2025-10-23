@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Pasajeros</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-slate-50 text-slate-700 antialiased">
+@extends('app')
+@section('content')
 
     {{-- Contenedor principal --}}
     <main class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
-        
+
         {{-- Encabezado de la página --}}
         <header class="mb-8">
             <h1 class="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight mb-2">
@@ -62,7 +55,7 @@
 
             {{-- Botón de envío --}}
             <div class="flex items-center justify-end gap-4 pt-6 border-t border-slate-200">
-                <button 
+                <button
                     type="submit"
                     class="inline-flex items-center gap-2 rounded-lg bg-sky-600 px-6 py-3 font-medium text-white shadow-sm transition duration-200 ease-out hover:bg-sky-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
                 >
@@ -98,11 +91,11 @@
                         <label for="passenger-${i}-first-name" class="block text-sm font-medium text-slate-700 mb-2">
                             Primer nombre <span class="text-red-500" aria-label="requerido">*</span>
                         </label>
-                        <flux:input 
-                            type="text" 
+                        <flux:input
+                            type="text"
                             id="passenger-${i}-first-name"
-                            name="passengers[${i}][first_name]" 
-                            class="w-full" 
+                            name="passengers[${i}][first_name]"
+                            class="w-full"
                             required
                             aria-required="true"
                         />
@@ -112,10 +105,10 @@
                         <label for="passenger-${i}-middle-name" class="block text-sm font-medium text-slate-700 mb-2">
                             Segundo nombre
                         </label>
-                        <flux:input 
-                            type="text" 
+                        <flux:input
+                            type="text"
                             id="passenger-${i}-middle-name"
-                            name="passengers[${i}][middle_name]" 
+                            name="passengers[${i}][middle_name]"
                             class="w-full"
                         />
                     </div>
@@ -124,11 +117,11 @@
                         <label for="passenger-${i}-first-surname" class="block text-sm font-medium text-slate-700 mb-2">
                             Primer apellido <span class="text-red-500" aria-label="requerido">*</span>
                         </label>
-                        <flux:input 
-                            type="text" 
+                        <flux:input
+                            type="text"
                             id="passenger-${i}-first-surname"
-                            name="passengers[${i}][first_surname]" 
-                            class="w-full" 
+                            name="passengers[${i}][first_surname]"
+                            class="w-full"
                             required
                             aria-required="true"
                         />
@@ -138,11 +131,11 @@
                         <label for="passenger-${i}-middle-surname" class="block text-sm font-medium text-slate-700 mb-2">
                             Segundo apellido <span class="text-red-500" aria-label="requerido">*</span>
                         </label>
-                        <flux:input 
-                            type="text" 
+                        <flux:input
+                            type="text"
                             id="passenger-${i}-middle-surname"
-                            name="passengers[${i}][middle_surname]" 
-                            class="w-full" 
+                            name="passengers[${i}][middle_surname]"
+                            class="w-full"
                             required
                             aria-required="true"
                         />
@@ -152,11 +145,11 @@
                         <label for="passenger-${i}-birth-date" class="block text-sm font-medium text-slate-700 mb-2">
                             Fecha de nacimiento <span class="text-red-500" aria-label="requerido">*</span>
                         </label>
-                        <flux:input 
-                            type="date" 
+                        <flux:input
+                            type="date"
                             id="passenger-${i}-birth-date"
-                            name="passengers[${i}][fecha_nacimiento]" 
-                            class="w-full" 
+                            name="passengers[${i}][fecha_nacimiento]"
+                            class="w-full"
                             required
                             aria-required="true"
                         />
@@ -166,10 +159,10 @@
                         <label for="passenger-${i}-gender" class="block text-sm font-medium text-slate-700 mb-2">
                             Género <span class="text-red-500" aria-label="requerido">*</span>
                         </label>
-                        <flux:select 
+                        <flux:select
                             id="passenger-${i}-gender"
-                            name="passengers[${i}][genero]" 
-                            class="w-full" 
+                            name="passengers[${i}][genero]"
+                            class="w-full"
                             required
                             aria-required="true"
                         >
@@ -184,10 +177,10 @@
                         <label for="passenger-${i}-doc-type" class="block text-sm font-medium text-slate-700 mb-2">
                             Tipo de documento <span class="text-red-500" aria-label="requerido">*</span>
                         </label>
-                        <flux:select 
+                        <flux:select
                             id="passenger-${i}-doc-type"
-                            name="passengers[${i}][type_document]" 
-                            class="w-full" 
+                            name="passengers[${i}][type_document]"
+                            class="w-full"
                             required
                             aria-required="true"
                         >
@@ -203,11 +196,11 @@
                         <label for="passenger-${i}-doc-number" class="block text-sm font-medium text-slate-700 mb-2">
                             Número de documento <span class="text-red-500" aria-label="requerido">*</span>
                         </label>
-                        <flux:input 
-                            type="number" 
+                        <flux:input
+                            type="number"
                             id="passenger-${i}-doc-number"
-                            name="passengers[${i}][number_document]" 
-                            class="w-full" 
+                            name="passengers[${i}][number_document]"
+                            class="w-full"
                             required
                             aria-required="true"
                         />
@@ -217,11 +210,11 @@
                         <label for="passenger-${i}-phone" class="block text-sm font-medium text-slate-700 mb-2">
                             Teléfono <span class="text-red-500" aria-label="requerido">*</span>
                         </label>
-                        <flux:input 
-                            type="number" 
+                        <flux:input
+                            type="number"
                             id="passenger-${i}-phone"
-                            name="passengers[${i}][number_phone]" 
-                            class="w-full" 
+                            name="passengers[${i}][number_phone]"
+                            class="w-full"
                             required
                             aria-required="true"
                         />
@@ -231,10 +224,10 @@
                         <label for="passenger-${i}-email" class="block text-sm font-medium text-slate-700 mb-2">
                             Email
                         </label>
-                        <flux:input 
-                            type="email" 
+                        <flux:input
+                            type="email"
                             id="passenger-${i}-email"
-                            name="passengers[${i}][email]" 
+                            name="passengers[${i}][email]"
                             class="w-full"
                         />
                     </div>
@@ -247,3 +240,4 @@
 
 </body>
 </html>
+@endsection

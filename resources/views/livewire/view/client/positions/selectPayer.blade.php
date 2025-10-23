@@ -13,7 +13,7 @@
         .seat-demo.demo-free { background: #10b981; }
         .seat-demo.demo-busy { background: #9ca3af; }
         .seat-demo.demo-active { background: #1d4ed8; }
-        
+
         /* AVION: cabina superior */
         .aircraft-cabin {
             position: absolute;
@@ -27,7 +27,7 @@
             border: 1px solid #cbd5e1;
             border-top: none;
         }
-        
+
         /* PRINT: sin sombras excesivas */
         @media print {
             .aircraft-wrap { box-shadow: none !important; }
@@ -93,6 +93,7 @@
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="seat_number" id="seat_number">
+                    <input type="hidden" name="userPassenger" value="{{ $flight->userPassenger }}">
 
                     {{-- AVION: wrapper con forma de fuselaje --}}
                     <div class="aircraft-wrap relative rounded-[2rem] ring-1 ring-slate-200 shadow-lg p-4 md:p-6 bg-gradient-to-b from-white to-slate-50 mb-6">
@@ -110,14 +111,14 @@
                                         @endphp
 
                                         {{-- ASIENTO: estados (libre/ocupado) --}}
-                                        <div 
+                                        <div
                                             class="seat {{ $isOccupied ? 'seat-busy' : 'seat-free' }} w-[2.25rem] h-[2.25rem] md:w-10 md:h-10 rounded-md text-[12px] font-semibold grid place-items-center transition-all duration-200
-                                                {{ $isOccupied 
-                                                    ? 'bg-slate-400 text-white cursor-not-allowed opacity-85' 
-                                                    : 'bg-emerald-500 text-white hover:bg-emerald-600 cursor-pointer border border-emerald-600' 
+                                                {{ $isOccupied
+                                                    ? 'bg-slate-400 text-white cursor-not-allowed opacity-85'
+                                                    : 'bg-emerald-500 text-white hover:bg-emerald-600 cursor-pointer border border-emerald-600'
                                                 }}"
                                             data-seat="{{ $seat->seat_number }}"
-                                            @if($isOccupied) 
+                                            @if($isOccupied)
                                                 data-occupied="true"
                                                 aria-disabled="true"
                                             @else
@@ -144,14 +145,14 @@
                                         @endphp
 
                                         {{-- ASIENTO: estados (libre/ocupado) --}}
-                                        <div 
+                                        <div
                                             class="seat {{ $isOccupied ? 'seat-busy' : 'seat-free' }} w-[2.25rem] h-[2.25rem] md:w-10 md:h-10 rounded-md text-[12px] font-semibold grid place-items-center transition-all duration-200
-                                                {{ $isOccupied 
-                                                    ? 'bg-slate-400 text-white cursor-not-allowed opacity-85' 
-                                                    : 'bg-emerald-500 text-white hover:bg-emerald-600 cursor-pointer border border-emerald-600' 
+                                                {{ $isOccupied
+                                                    ? 'bg-slate-400 text-white cursor-not-allowed opacity-85'
+                                                    : 'bg-emerald-500 text-white hover:bg-emerald-600 cursor-pointer border border-emerald-600'
                                                 }}"
                                             data-seat="{{ $seat->seat_number }}"
-                                            @if($isOccupied) 
+                                            @if($isOccupied)
                                                 data-occupied="true"
                                                 aria-disabled="true"
                                             @else
@@ -210,7 +211,7 @@
             if (!seat.dataset.occupied) {
                 // Click handler
                 seat.addEventListener('click', () => selectSeat(seat));
-                
+
                 // Keyboard accessibility: Enter y Espacio
                 seat.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {

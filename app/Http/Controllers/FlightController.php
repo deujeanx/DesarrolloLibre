@@ -18,7 +18,7 @@ class FlightController extends Controller
     {
 
 
-        $flights = Flight::with(['origin', 'destinie', 'airline', 'model_plane'])->get();        
+        $flights = Flight::with(['origin', 'destinie', 'airline', 'model_plane'])->get();
         return view('flightsList', compact('flights'));
 
     }
@@ -117,14 +117,21 @@ class FlightController extends Controller
         return redirect(route('flightsList'));
 
     }
-    
+
     public function update(Request $request, Flight $flight)
     {
         $request->validate([
-            'userPassenger' => 'required|integer|min:1',
+            'userPassenger' => 'required|integer|min:0',
         ]);
 
-        $nuevosCupos = $flight->cantCupos - $request->userPassenger;
+        if ($request->userPassenger == 0)
+        {
+            $nuevosCupos = $flight->cantCupos - 1;
+        }
+        else
+        {
+            $nuevosCupos = $flight->cantCupos - $request->userPassenger;
+        }
 
         if ($nuevosCupos < 0) {
             return back()->with('error', 'No hay suficientes cupos disponibles para esa cantidad de pasajeros.');
@@ -135,9 +142,15 @@ class FlightController extends Controller
         $flight->estado = $nuevosCupos == 0 ? 'lleno' : 'disponible';
         $flight->save();
 
-        // Redirigimos a la vista para registrar pasajeros
-        return redirect()
-            ->route('user_passengers.create.withFlight', ['flight_id' => $flight->id, 'cantidad' => $request->userPassenger]);
+        // Si la $userPassenger == 0 entonces se salta el formulario de pasajeros
+        if ($request->userPassenger == 0) {
+            return redirect()
+                ->route('positions.selectPayer', ['flight_id' => $flight->id]);
+        }else
+        {
+            return redirect()
+                ->route('user_passengers.create.withFlight', ['flight_id' => $flight->id, 'cantidad' => $request->userPassenger]);
+        }
     }
 
     /**

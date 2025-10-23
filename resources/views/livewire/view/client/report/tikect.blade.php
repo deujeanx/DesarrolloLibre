@@ -6,21 +6,22 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
 
 
-            @empty
-                <div class="text-center py-16">
-                    <p class="text-slate-700 text-lg font-medium mb-4">
-                        ¡Aún no tienes reservas! Reserva ahora: fácil y rápido.
-                    </p>
-                    <a href="{{ route('home') }}"
-                        class="inline-flex items-center gap-2 px-6 py-3 bg-sky-600 hover:bg-sky-700 text-white font-semibold rounded-xl transition">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                        Reservar ahora
-                    </a>
-                </div>
-                @endforelse
+            @empty($tickets)
+            <div class="text-center py-16">
+                <p class="text-slate-700 text-lg font-medium mb-4">
+                    ¡Aún no tienes reservas! Reserva ahora: fácil y rápido.
+                </p>
+                <a href="{{ route('home') }}"
+                    class="inline-flex items-center gap-2 px-6 py-3 bg-sky-600 hover:bg-sky-700 text-white font-semibold rounded-xl transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    Reservar ahora
+                </a>
+            </div>
+            @endempty
+
 
 
                 {{-- Page Header --}}

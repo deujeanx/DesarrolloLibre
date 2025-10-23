@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('flight_id')->constrained('flights')->onDelete('cascade');
             $table->foreignId('user_payer_id')->constrained('user_payers')->onDelete('cascade');
 
+            $table->string('cantPasajeros');
             $table->string('token');
             $table->timestamps();
         });

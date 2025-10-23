@@ -51,7 +51,7 @@
                                 Aerolínea
                             </label>
                             <div class="relative">
-                                <input type="text" value="{{ $flight->airline->airline }}" 
+                                <input type="text" value="{{ $flight->airline->airline }}"
                                     disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-900 font-medium">
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                                 Modelo de avión
                             </label>
                             <div class="relative">
-                                <input type="text" value="{{ $flight->model_plane->marca }}" 
+                                <input type="text" value="{{ $flight->model_plane->marca }}"
                                     disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-900 font-medium">
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                                 Fecha y hora
                             </label>
                             <div class="relative">
-                                <input type="text" value="{{ \Carbon\Carbon::parse($flight->dateHour)->format('d/m/Y H:i') }}" 
+                                <input type="text" value="{{ \Carbon\Carbon::parse($flight->dateHour)->format('d/m/Y H:i') }}"
                                     disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-900 font-medium">
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                                 Precio por asiento
                             </label>
                             <div class="relative">
-                                <input type="text" value="${{ number_format($flight->positionValue, 0, ',', '.') }}" 
+                                <input type="text" value="${{ number_format($flight->positionValue, 0, ',', '.') }}"
                                     disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-900 font-bold text-lg">
                             </div>
                         </div>
@@ -126,16 +126,17 @@
                         <select name="userPassenger" required
                             class="w-full border border-slate-300 rounded-lg px-4 py-3 text-slate-900 font-medium focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all duration-200 cursor-pointer hover:border-sky-400">
                             <option value="" selected disabled>Selecciona la cantidad de pasajeros</option>
-                            <option value="1">1 pasajero</option>
-                            <option value="2">2 pasajeros</option>
-                            <option value="3">3 pasajeros</option>
-                            <option value="4">4 pasajeros</option>
-                            <option value="5">5 pasajeros</option>
+                            <option value="0">Solo Yo</option>
+                            <option value="1">+1 pasajero</option>
+                            <option value="2">+2 pasajeros</option>
+                            <option value="3">+3 pasajeros</option>
+                            <option value="4">+4 pasajeros</option>
+                            <option value="5">+5 pasajeros</option>
                         </select>
                     </div>
 
                     {{-- Submit Button --}}
-                    <button type="submit" 
+                    <button type="submit"
                         class="w-full bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-700 hover:to-sky-800 text-white font-bold py-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl flex items-center justify-center group">
                         <svg class="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>

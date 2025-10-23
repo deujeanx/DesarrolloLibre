@@ -41,13 +41,21 @@ class PayController extends Controller
         ]);
 
         $flight = Flight::findOrFail($validated['flight_id']);
-
-        $cantidadPeople = $flight->userPassenger;
         $valorXpuesto = $flight->positionValue;
-        $total = $cantidadPeople * $valorXpuesto;
+
+        if ($request->userPassenger == 0) {
+            $total = $valorXpuesto;
+        }
+        else
+        {
+            $cantidadPeople = $flight->userPassenger;
+            $total = $cantidadPeople * $valorXpuesto;
+        }
+
 
         $validated['flight_id'] = $flight->id;
         $validated['user_payer_id'] = Auth::user()->user_payers->first()->id;
+        $validated['cantPasajeros'] = $request->userPassenger;
         $validated['total'] = $total;
 
         Pay::create($validated);
@@ -61,6 +69,7 @@ class PayController extends Controller
         Ticket::create([
             'flight_id' => $flight->id,
             'user_payer_id' => Auth::user()->user_payers->first()->id,
+            'cantPasajeros' => $request->userPassenger,
             'token' => Str::random(10),
         ]);
 

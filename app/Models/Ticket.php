@@ -14,6 +14,7 @@ class Ticket extends Model
     [
         'flight_id',
         'user_payer_id',
+        'cantPasajeros',
         'token',
     ];
 
