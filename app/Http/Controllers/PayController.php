@@ -64,8 +64,7 @@ class PayController extends Controller
             'token' => Str::random(10),
         ]);
 
-        return view('welcome')
-            ->with('success', 'Pago registrado correctamente');
+        return redirect()->route('tickets.index');
     }
 
     /**

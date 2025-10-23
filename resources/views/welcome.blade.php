@@ -25,7 +25,7 @@
         <nav class="flex items-center gap-6 text-sm font-medium text-gray-700">
             <a href="{{ route('home') }}" class="hover:text-blue-600">Inicio</a>
             <a href="{{ route('flights.indexWelcome') }}" class="hover:text-blue-600">Reservar</a>
-            <a href="#" class="hover:text-blue-600">Mis reservas</a>
+            <a href="{{ route('tickets.index') }}" class="hover:text-blue-600">Mis reservas</a>
 
             <div class="flex items-center gap-3">
 
@@ -65,20 +65,6 @@
             </div>
         </nav>
     </header>
-
-    @if (Session::has('alert'))
-        <script>
-            // Convierte el array de PHP a un objeto JSON
-            const alertData = @json(session('alert'));
-
-            // Llama a SweetAlert2 con los datos recibidos
-            Swal.fire({
-                icon: alertData.icon,
-                title: alertData.title,
-                text: alertData.text,
-            });
-        </script>
-    @endif
 
     @section('content')
         @include('home')
