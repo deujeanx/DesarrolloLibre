@@ -21,8 +21,6 @@ class FlightController extends Controller
         $flights = Flight::with(['origin', 'destinie', 'airline', 'model_plane'])->get();        
         return view('flightsList', compact('flights'));
 
-        return view('livewire.view.admin.list-Flights', compact('flights'));
-
     }
 
     /**
