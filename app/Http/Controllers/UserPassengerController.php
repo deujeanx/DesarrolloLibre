@@ -40,7 +40,7 @@ class UserPassengerController extends Controller
             'passengers.*.fecha_nacimiento' => [
                 'required',
                 'date',
-                'before_or_equal:' . now()->subYears(2)->format('Y-m-d'),
+                'before_or_equal:' . now()->subYears(3)->format('Y-m-d'),
             ],
         ]);
 
