@@ -91,7 +91,9 @@ Route::middleware(['auth'])->group(function () {
     //<<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
     //Ruta para la generacion de tickets<<<>>>
     //<<<<<<<<<<>>>>>>>>>>>>>><<<<<>>>>>>>>>>>
+
     Route::resource('tickets', TicketController::class);
     Route::get('reservas', [TicketController::class, 'reservas'])->name('reservas.index');
+    Route::get('reserva/{id}', [TicketController::class, 'reserva'])->name('reserva.show');
 
 });
