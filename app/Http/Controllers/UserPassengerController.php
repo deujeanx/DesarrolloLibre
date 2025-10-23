@@ -37,11 +37,20 @@ class UserPassengerController extends Controller
         $validated = $request->validate([
             'flight_id' => 'required|exists:flights,id',
             'passengers' => 'required|array|min:1',
+            'passengers.*.first_name'      => 'required|string|max:100',
+            'passengers.*.middle_name'     => 'nullable|string|max:100',
+            'passengers.*.first_surname'   => 'required|string|max:100',
+            'passengers.*.middle_surname'  => 'nullable|string|max:100',
             'passengers.*.fecha_nacimiento' => [
                 'required',
                 'date',
                 'before_or_equal:' . now()->subYears(3)->format('Y-m-d'),
             ],
+            'passengers.*.genero'          => 'required',
+            'passengers.*.email'           => 'nullable|email',
+            'passengers.*.type_document'   => 'required|string|max:50',
+            'passengers.*.number_document' => 'required|string|max:50',
+            'passengers.*.number_phone'    => 'required|string|max:30',
         ]);
 
         $user = Auth::user();

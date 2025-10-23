@@ -290,7 +290,7 @@
                 </div>
                 <div>
                     <p class="field-label">Cantidad de pasajeros</p>
-                    <p class="field-value">{{ $ticket->cantPasajeros }}</p>
+                    <p class="field-value">{{ $ticket->cantPasajeros + 1 }}</p>
                 </div>
                 <div>
                     <p class="field-label">Método de pago</p>
@@ -309,7 +309,7 @@
                 <div class="row">
                     <span class="label total">Valor total</span>
                     <span class="value total">
-                        ${{ number_format($ticket->user_payer->pays->first()->total ?? 0, 0, ',', '.') }}
+                        ${{ number_format($ticket->user_payer->pays->first()->total ?? 0, 0, ',', '.') * ($ticket->cantPasajeros + 1) }}
                     </span>
                 </div>
             </div>

@@ -206,6 +206,7 @@
                             aria-required="true"
                         >
                             <flux:select.option value="">Seleccione...</flux:select.option>
+                            <flux:select.option value="Tarjeta de Identidad">Tarjeta Identidad</flux:select.option>
                             <flux:select.option value="Cédula de Ciudadanía">Cédula de Ciudadanía</flux:select.option>
                             <flux:select.option value="Cédula de Extranjería">Cédula de Extranjería</flux:select.option>
                             <flux:select.option value="Pasaporte">Pasaporte</flux:select.option>

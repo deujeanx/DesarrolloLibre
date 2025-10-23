@@ -15,8 +15,20 @@ class TicketController extends Controller
     public function index()
     {
 
-        $userId = Auth::user()->user_payers->first()->id;
-        $tickets = Ticket::where('user_payer_id', $userId)->get();
+         // id del user_payer autenticado (evita error si no tiene)
+    $userPayerId = Auth::user()->user_payers()->value('id');
+
+    if (!$userPayerId) {
+        // Decide: redirigir o devolver lista vacía
+        $tickets = collect();
+        return view('livewire.view.client.report.tikect', compact('tickets'));
+    }
+
+        $tickets = Ticket::with(['flight.user_passengers', 'flight.positions'])
+                    ->where('user_payer_id', $userPayerId)
+                    ->get();
+
+
         return view('livewire.view.client.report.tikect', compact('tickets'));
 
     }
