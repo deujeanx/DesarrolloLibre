@@ -155,6 +155,7 @@
                 </svg>
                 <p class="text-sm text-blue-800">
                     Al confirmar la compra, recibirás un correo electrónico con los detalles de tu reserva y las instrucciones para completar el pago.
+                    No registrar como pasajero a su hijo o niño menor de 2 años.
                 </p>
             </div>
         </div>

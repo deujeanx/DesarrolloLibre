@@ -44,6 +44,18 @@
             </div>
         @endif
 
+        {{-- Info Notice --}}
+        <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div class="flex items-start">
+                <svg class="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <p class="text-sm text-blue-800">
+                    Si tu pasajero es un niño o un bebe de 2 años para abajo, descuide usuario. no paga por el asiento.
+                </p>
+            </div>
+        </div>
+
         {{-- Formulario principal --}}
         <form action="{{ route('user_passengers.store') }}" method="POST" class="space-y-6">
             @csrf
@@ -64,9 +76,18 @@
                     </svg>
                     Registrar Pasajeros
                 </button>
-            </div>
-        </form>
+            </form>
 
+            {{-- Boton de Salir --}}
+            <button
+                    class="inline-flex items-center gap-2 rounded-lg bg-gray-400 px-6 py-3 font-medium text-white shadow-sm transition duration-200 ease-out hover:bg-gray-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2"
+                >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" role="img" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <a href="{{ route('home') }}">Salir</a>
+                </button>
+            </div>
     </main>
 
     {{-- Script de generación dinámica de formularios --}}

@@ -37,6 +37,11 @@ class UserPassengerController extends Controller
         $validated = $request->validate([
             'flight_id' => 'required|exists:flights,id',
             'passengers' => 'required|array|min:1',
+            'passengers.*.fecha_nacimiento' => [
+                'required',
+                'date',
+                'before_or_equal:' . now()->subYears(2)->format('Y-m-d'),
+            ],
         ]);
 
         $user = Auth::user();
@@ -64,7 +69,7 @@ class UserPassengerController extends Controller
         foreach ($validated['passengers'] as $data) {
             UserPassenger::create([
                 'flight_id' => $validated['flight_id'],
-                'user_payer_id' => $userPayer->id, 
+                'user_payer_id' => $userPayer->id,
                 'first_name' => $data['first_name'],
                 'middle_name' => $data['middle_name'] ?? null,
                 'first_surname' => $data['first_surname'],
