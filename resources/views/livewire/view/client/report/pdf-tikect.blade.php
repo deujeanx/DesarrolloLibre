@@ -19,13 +19,13 @@
             --shadow: 0 4px 6px -1px rgba(0,0,0,.08), 0 2px 4px -1px rgba(0,0,0,.04);
             --shadow-lg: 0 10px 25px -5px rgba(0,0,0,.1), 0 8px 10px -6px rgba(0,0,0,.08);
         }
-        
-        *{ 
-            box-sizing: border-box; 
+
+        *{
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        
+
         html, body{
             background: var(--bg);
             color: var(--text);
@@ -140,7 +140,7 @@
                 gap: 16px;
             }
         }
-        
+
         /* Improved field labels with icons-like styling */
         .field-label{
             font-size: 12px;
@@ -166,7 +166,7 @@
             background-size: 100% 1px;
             background-repeat: no-repeat;
         }
-        
+
         /* Improved row layout with better spacing */
         .row{
             display: flex;
@@ -176,12 +176,12 @@
             gap: 16px;
             padding: 8px 0;
         }
-        .row:last-child{ 
+        .row:last-child{
             margin-bottom: 0;
             padding-top: 12px;
             border-top: 1px dashed var(--border);
         }
-        
+
         .label{
             color: var(--muted);
             font-weight: 600;
@@ -192,7 +192,7 @@
             font-weight: 700;
             font-size: 15px;
         }
-        
+
         /* Enhanced total with highlight background */
         .total{
             font-size: 18px;
@@ -213,15 +213,15 @@
             size: A4;
         }
         @media print{
-            body{ 
+            body{
                 background: #fff;
                 font-size: 12pt;
             }
-            .container{ 
+            .container{
                 margin: 0 auto;
                 padding: 0;
             }
-            .card{ 
+            .card{
                 box-shadow: none;
                 border: 2px solid var(--border);
                 margin-bottom: 20mm;
@@ -234,7 +234,7 @@
                 background: var(--accent);
             }
         }
-        
+
         /* Responsive improvements */
         @media (max-width: 768px){
             .container{
@@ -290,7 +290,7 @@
                 </div>
                 <div>
                     <p class="field-label">Cantidad de pasajeros</p>
-                    <p class="field-value">{{ $ticket->flight->destinie_id }}</p>
+                    <p class="field-value">{{ $ticket->cantPasajeros }}</p>
                 </div>
                 <div>
                     <p class="field-label">Método de pago</p>

@@ -144,7 +144,7 @@
                                     <div>
                                         <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Pasajeros
                                         </p>
-                                        <p class="text-base font-bold text-slate-800">{{ $ticket->flight->destinie_id }}</p>
+                                        <p class="text-base font-bold text-slate-800">{{ $ticket->cantPasajeros }}</p>
                                     </div>
                                 </div>
 
