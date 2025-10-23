@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use App\Models\Flight;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -12,9 +14,10 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $id = auth()->user()->id;
-        $tickets = Ticket::find($id);
-         return view('livewire.view.client.report.tikect', compact('tickets'));
+
+        $userId = Auth::user()->user_payers->first()->id;
+        $tickets = Ticket::where('user_payer_id', $userId)->get();
+        return view('livewire.view.client.report.tikect', compact('tickets'));
     }
 
     // visualiza las reservas que hizo el usuario

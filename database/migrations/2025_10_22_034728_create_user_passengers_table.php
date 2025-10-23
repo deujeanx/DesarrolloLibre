@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('middle_surname');
             $table->date('fecha_nacimiento');
             $table->string('genero');
-            $table->string('email')->unique()->nullable();
+            $table->string('email')->nullable();
             $table->string('type_document');
             $table->string('number_document');
             $table->string('number_phone');
