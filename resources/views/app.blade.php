@@ -22,12 +22,12 @@
             <div class="flex items-center justify-between h-16">
                 {{-- Logo --}}
                 <a href="{{ route('home') }}" class="flex items-center gap-2 group">
-                    <svg class="h-8 w-8 text-sky-600 transition-transform duration-200 group-hover:scale-110" 
-                         role="img" 
-                         aria-label="AirHub Logo" 
-                         fill="none" 
-                         viewBox="0 0 24 24" 
-                         stroke="currentColor" 
+                    <svg class="h-8 w-8 text-sky-600 transition-transform duration-200 group-hover:scale-110"
+                         role="img"
+                         aria-label="AirHub Logo"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
                          stroke-width="1.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
                     </svg>
@@ -40,6 +40,7 @@
                     <a href="{{ route('flights.indexWelcome') }}" class="hover:text-sky-600 transition-colors duration-200">Buscar vuelos</a>
                     <a href="{{ route('tickets.index') }}" class="hover:text-sky-600 transition-colors duration-200">Mis reservas</a>
                     <a href="{{ route('chat.ia') }}" class="hover:text-sky-600 transition-colors duration-200">Soporte</a>
+
                 </nav>
 
                 {{-- Auth / Guest --}}
@@ -61,16 +62,19 @@
                                         </flux:navmenu.item>
                                     </form>
                                 </flux:navmenu.item>
+                                <flux:menu.item  href="{{ route('flights.indexWelcome')  }}"   icon="pencil-square" kbd="⌘S">Vuelos</flux:menu.item>
+                        <flux:menu.item  href="{{ route('tickets.index') }}"   icon="document-duplicate" kbd="⌘D">Reservas</flux:menu.item>
+                        <flux:menu.item  href="{{ route('chat.ia') }}"   icon="user" kbd="⌘⌫">Soporte</flux:menu.item>
                             </flux:navmenu>
                         </flux:dropdown>
                     @endauth
 
                     @guest
-                        <a href="{{ route('login') }}" 
+                        <a href="{{ route('login') }}"
                            class="text-sky-600 font-medium hover:text-sky-700 transition-colors duration-200">
                             Iniciar sesión
                         </a>
-                        <a href="{{ route('register') }}" 
+                        <a href="{{ route('register') }}"
                            class="bg-sky-600 text-white px-5 py-2 rounded-lg hover:bg-sky-700 transition-all duration-200 shadow-sm hover:shadow-md">
                             Registrarse
                         </a>
@@ -110,7 +114,7 @@
                         <li><a href="{{ route('flights.indexWelcome') }}" class="hover:text-sky-400 transition-colors duration-200">Buscar vuelos</a></li>
                         <li><a href="{{ route('tickets.index') }}" class="hover:text-sky-400 transition-colors duration-200">Mis reservas</a></li>
                         <li><a href="{{ route('chat.ia.api') }}" class="hover:text-sky-400 transition-colors duration-200">Soporte</a></li>
-                        
+
                     </ul>
                 </div>
 
